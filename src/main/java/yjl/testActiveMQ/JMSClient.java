@@ -16,7 +16,7 @@ public class JMSClient {
         System.out.println("fileReceiver:从jms文件队列接受文件");
     }
 
-    public static void what(String[] cmd) throws JMSException {
+    public static void main(String[] cmd) throws JMSException {
         if (cmd.length == 0) {
             help();
             return;
