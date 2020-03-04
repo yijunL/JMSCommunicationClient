@@ -15,7 +15,7 @@ import javax.jms.TextMessage;
  
 import org.apache.activemq.ActiveMQConnectionFactory;
  
-public class JMSReceiver{                //基于JMS的消息发送者的消息接收者
+public class JMSReceiver {                //基于JMS的消息发送者的消息接收者
 	public static final String user = "system";
 	public static final String password = "manager";
 	public static final String url = "tcp://localhost:61616";
@@ -70,8 +70,8 @@ public class JMSReceiver{                //基于JMS的消息发送者的消息�
 //    		}
 //    	}
     }
-	public void terminate() throws JMSException {
-		session.close();
-		connection.close();  
-	}
+//	public void terminate() throws JMSException {
+//		session.close();
+//		connection.close();  
+//	}
 }
