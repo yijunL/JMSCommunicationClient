@@ -37,17 +37,16 @@ public class JMSClient {
             }
         } else if ("receiver".equalsIgnoreCase(mode)) {
             JMSReceiver consumer = new JMSReceiver();
-//			ReceiverRunner receiverRunner=new ReceiverRunner(consumer);
-//			receiverRunner.start();
-//			Scanner sc = new Scanner(System.in);
+			ReceiverRunner receiverRunner=new ReceiverRunner(consumer);
+			receiverRunner.start();
+			Scanner sc = new Scanner(System.in);
 			while (true) {
-//	             System.out.println("input q to exist :");
-//	             String msg = sc.nextLine();
-//	             if ("q".equalsIgnoreCase(msg)) {
-//	            	 receiverRunner.interrupt();
-//	                 return;
-//	                }
-				consumer.receive();
+	             System.out.println("input q to exist :");
+	             String msg = sc.nextLine();
+	             if ("q".equalsIgnoreCase(msg)) {
+	            	 receiverRunner.exit=true;
+	                 return;
+	                }
 	        }
             
         } else if ("topicSender".equalsIgnoreCase(mode)) {

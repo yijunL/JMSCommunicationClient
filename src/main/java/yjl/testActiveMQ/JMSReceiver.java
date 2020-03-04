@@ -15,21 +15,25 @@ import javax.jms.TextMessage;
  
 import org.apache.activemq.ActiveMQConnectionFactory;
  
-public class JMSReceiver {                //基于JMS的消息发送者的消息接收者
-	public static final String user = "system";
-	public static final String password = "manager";
-	public static final String url = "tcp://localhost:61616";
-	public static final String queueName = "test_queue";
-	public static final boolean transacted = false;
-	public static final boolean persistent = false;
-	Connection connection = null;
-	Session session = null;
+public class JMSReceiver extends Receiver {                //基于JMS的消息发送者的消息接收者
+//	public static final String user = "system";
+//	public static final String password = "manager";
+//	public static final String url = "tcp://localhost:61616";
+//	public static final String queueName = "test_queue";
+//	public static final boolean transacted = false;
+//	public static final boolean persistent = false;
+//	Connection connection = null;
+//	Session session = null;
 	
     public void receive(){    	
     	
     	try{
     		// create the connection
-    	    ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(user, password, url);
+    		url = "tcp://localhost:61616";
+    		boolean transacted = false;
+    		boolean persistent = false;
+    		String queueName = "test_queue";
+    	    ConnectionFactory connectionFactory = new ActiveMQConnectionFactory( url);
             connection = connectionFactory.createConnection();
             connection.start();
             
