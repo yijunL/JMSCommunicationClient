@@ -77,9 +77,13 @@ public class JMSClient {
                 
             }
         }
-        else if("fileReceive".equalsIgnoreCase(mode)) {
+        else if("fileReceiver".equalsIgnoreCase(mode)) {
         	JMSFileReceiver receiver=new JMSFileReceiver();
         	receiver.receiveFile();
+        }
+        else {
+        	help();
+            return;
         }
     }
 }
