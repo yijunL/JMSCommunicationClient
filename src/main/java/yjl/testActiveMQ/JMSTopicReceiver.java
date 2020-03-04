@@ -17,10 +17,10 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 /** 
  * 持久订阅设置唯一的客户端ID和订阅者ID。 
  */  
-public class JMSTopicReceiver extends Receiver {           //基于JMS的主题订阅者
+public class JMSTopicReceiver{           //基于JMS的主题订阅者
   
 	public static final String url = "tcp://localhost:61616";
-//	public static final String topicName="topicTest";
+	public static final String topicName="topicTest";
 	Connection connection=null;
 	Session session=null;
 	
@@ -55,19 +55,6 @@ public class JMSTopicReceiver extends Receiver {           //基于JMS的主题�
     		e.printStackTrace();
     	}
          
-    }
-
-	@Override
-	public void terminate() {
-		// TODO Auto-generated method stub
-		try {
-			session.close();
-			connection.close(); 
-		} catch (JMSException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-	}  
+    }	
+		 
 }  

@@ -16,7 +16,7 @@ public class JMSClient {
         System.out.println("fileReceiver:从jms文件队列接受文件");
     }
 
-    public static void main(String[] cmd) throws JMSException {
+    public static void what(String[] cmd) throws JMSException {
         if (cmd.length == 0) {
             help();
             return;
@@ -29,7 +29,7 @@ public class JMSClient {
                 System.out.println("input you message(q to exist):");
                 String msg = sc.nextLine();
                 if ("q".equalsIgnoreCase(msg)) {
-                	sender.terminate();
+//                	sender.terminate();
                     return;
                 }
                 sender.sendMessage(msg);;
@@ -37,17 +37,18 @@ public class JMSClient {
             }
         } else if ("receiver".equalsIgnoreCase(mode)) {
             JMSReceiver consumer = new JMSReceiver();
-			ReceiverRunner receiverRunner=new ReceiverRunner(consumer);
-			receiverRunner.start();
-			Scanner sc = new Scanner(System.in);
+//			ReceiverRunner receiverRunner=new ReceiverRunner(consumer);
+//			receiverRunner.start();
+//			Scanner sc = new Scanner(System.in);
 			while (true) {
-	             System.out.println("input q to exist :");
-	             String msg = sc.nextLine();
-	             if ("q".equalsIgnoreCase(msg)) {
-	            	 receiverRunner.terminate();
-	                 return;
-	                }
-	            }
+//	             System.out.println("input q to exist :");
+//	             String msg = sc.nextLine();
+//	             if ("q".equalsIgnoreCase(msg)) {
+//	            	 receiverRunner.interrupt();
+//	                 return;
+//	                }
+				consumer.receive();
+	        }
             
         } else if ("topicSender".equalsIgnoreCase(mode)) {
             JMSTopicSender sender = new JMSTopicSender();

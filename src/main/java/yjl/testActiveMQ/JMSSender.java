@@ -26,7 +26,25 @@ public class JMSSender{           //基于JMS的消息发送者
 	MessageProducer producer=null;
 	Destination destination=null;
 	
-	private void init() throws JMSException {
+//	private void init() throws JMSException {
+//		ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(user, password, url);
+//        connection = connectionFactory.createConnection();
+//        connection.start();
+//        
+//        // create the session
+//        session = connection.createSession(transacted, Session.AUTO_ACKNOWLEDGE);
+//        destination = session.createQueue(queueName);
+//        
+//        // create the producer
+//        producer = session.createProducer(destination);
+//        if (persistent){
+//        	producer.setDeliveryMode(DeliveryMode.PERSISTENT);
+//        }else{
+//        	producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+//        }
+//	}
+//	
+	public void sendMessage(String msg) throws JMSException {
 		ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(user, password, url);
         connection = connectionFactory.createConnection();
         connection.start();
@@ -42,19 +60,18 @@ public class JMSSender{           //基于JMS的消息发送者
         }else{
         	producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
         }
-	}
-	
-	public void sendMessage(String msg) throws JMSException {
-		 if (this.producer == null)
-            this.init();
+//		 if (this.producer == null)
+//            this.init();
 		 TextMessage message = session.createTextMessage(msg);    
          // send the message
 		 System.out.println(LocalDateTime.now()+"  Send message: " +  message.getText());
          producer.send(message); 
+         session.close();
+ 		 connection.close();
 	}
 	
-	public void terminate() throws JMSException {
-		session.close();
-		connection.close();  
-	}
+//	public void terminate() throws JMSException {
+//		session.close();
+//		connection.close();  
+//	}
 }
