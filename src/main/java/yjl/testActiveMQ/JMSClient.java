@@ -7,9 +7,8 @@ import javax.jms.JMSException;
 public class JMSClient {
 
     public static void help() {
-        System.out.println("Usage:java -jar JMSClient.jar sender/receiver/topicSender/topicReceiver/fileSender/fileReceiver");
-        System.out.println("sender:向jms队列发送消息");
-        System.out.println("receiver:从jms队列中取出消息");
+        System.out.println("Usage:java -jar JMSClient.jar p2p/topicSender/topicReceiver/fileSender/fileReceiver");
+        System.out.println("p2p:点对点通讯");
         System.out.println("topicSender:向jms主题发送消息");
         System.out.println("topicReceiver:从jms主题中取出消息");
         System.out.println("fileSender:向jms文件队列传输文件");
@@ -22,7 +21,7 @@ public class JMSClient {
             return;
         }
         String mode = cmd[0];
-        if ("sender".equalsIgnoreCase(mode)) {
+        if ("p2p".equalsIgnoreCase(mode)) {
             JMSSender sender = new JMSSender();
             Scanner sc = new Scanner(System.in);
             System.out.println("input you userId to login:");
@@ -50,7 +49,7 @@ public class JMSClient {
                 sender.sendMessage(msg,destin);;
 //                System.out.println("message send success");
             }
-        } //else if ("receiver".equalsIgnoreCase(mode)) {               //将被废弃
+        } //else if ("receiver".equalsIgnoreCase(mode)) {               //已被废弃
 //            JMSReceiver consumer = new JMSReceiver();
 //			ReceiverRunner receiverRunner=new ReceiverRunner(consumer);
 //			receiverRunner.start();
