@@ -17,7 +17,7 @@ public class JMSSender{           //基于JMS的消息发送者
 	public static final String user = "system";
 	public static final String password = "manager";
 	public static final String url = "tcp://localhost:61616";
-	public static final String queueName = "test_queue";
+	public static String queueName;
 	public static final String messageBody = "Hello JMS!";
 	public static final boolean transacted = false;
 	public static final boolean persistent = false;
@@ -44,7 +44,8 @@ public class JMSSender{           //基于JMS的消息发送者
 //        }
 //	}
 //	
-	public void sendMessage(String msg) throws JMSException {
+	public void sendMessage(String msg,String destin) throws JMSException {
+		queueName=destin;
 		ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(user, password, url);
         connection = connectionFactory.createConnection();
         connection.start();

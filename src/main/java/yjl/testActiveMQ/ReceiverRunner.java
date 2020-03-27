@@ -15,6 +15,7 @@ public class ReceiverRunner extends Thread {           //订阅者线程  用于
 		while(!exit) {
 			//System.out.println("线程未终止");
 			receiver.receive();
+
 		}
 		//System.out.println("线程已终止");
 	}

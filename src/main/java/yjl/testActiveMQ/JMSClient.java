@@ -25,37 +25,54 @@ public class JMSClient {
         if ("sender".equalsIgnoreCase(mode)) {
             JMSSender sender = new JMSSender();
             Scanner sc = new Scanner(System.in);
-            while (true) {
-                System.out.println("input you message(q to exist):");
-                String msg = sc.nextLine();
-                if ("q".equalsIgnoreCase(msg)) {
-//                	sender.terminate();
-                    return;
-                }
-                sender.sendMessage(msg);;
-//                System.out.println("message send success");
-            }
-        } else if ("receiver".equalsIgnoreCase(mode)) {
-            JMSReceiver consumer = new JMSReceiver();
+            System.out.println("input you userId to login:");
+            String userId=sc.nextLine();
+
+            //发送和接收并行运行
+            JMSReceiver consumer = new JMSReceiver(userId);
 			ReceiverRunner receiverRunner=new ReceiverRunner(consumer);
 			receiverRunner.start();
-			Scanner sc = new Scanner(System.in);
-			while (true) {
-	             System.out.println("input q to exist :");
-	             String msg = sc.nextLine();
-	             if ("q".equalsIgnoreCase(msg)) {
-	            	 receiverRunner.exit=true;
-	                 return;
-	                }
-	        }
+			
+			System.out.println("Enter receiver ID:");
+            String destin=sc.nextLine();
+            while (true) {
+                System.out.println("input you message(/q to exist,/c to change receiver):");
+                String msg = sc.nextLine();
+                if ("/q".equalsIgnoreCase(msg)) {
+                	receiverRunner.exit=true;
+                	System.exit(0);
+                    return;
+                }
+                if ("/c".equalsIgnoreCase(msg)) {
+                	System.out.println("Enter receiver ID:");
+                    destin=sc.nextLine();
+                }
+                sender.sendMessage(msg,destin);;
+//                System.out.println("message send success");
+            }
+        } //else if ("receiver".equalsIgnoreCase(mode)) {               //将被废弃
+//            JMSReceiver consumer = new JMSReceiver();
+//			ReceiverRunner receiverRunner=new ReceiverRunner(consumer);
+//			receiverRunner.start();
+//			Scanner sc = new Scanner(System.in);
+//			while (true) {
+//	             System.out.println("input q to exist :");
+//	             String msg = sc.nextLine();
+//	             if ("q".equalsIgnoreCase(msg)) {
+//	            	 receiverRunner.exit=true;
+//	            	 System.exit(0);
+//	                 return;
+//	                }
+//	        }
             
-        } else if ("topicSender".equalsIgnoreCase(mode)) {
+//        } 
+    else if ("topicSender".equalsIgnoreCase(mode)) {
             JMSTopicSender sender = new JMSTopicSender();
             Scanner sc = new Scanner(System.in);
             while (true) {
-                System.out.println("input you message(q to exist):");
+                System.out.println("input you message(/q to exist):");
                 String msg = sc.nextLine();
-                if ("q".equalsIgnoreCase(msg)) {
+                if ("/q".equalsIgnoreCase(msg)) {
                     return;
                 }
                 sender.sendMessage(msg);
@@ -69,9 +86,9 @@ public class JMSClient {
         	Scanner sc = new Scanner(System.in);
         	while (true) {
         		sender.sendFile();
-                System.out.println("input any key(q to exist) to send another file: ");
+                System.out.println("input any key(/q to exist) to send another file: ");
                 String msg = sc.nextLine();
-                if ("q".equalsIgnoreCase(msg)) {
+                if ("/q".equalsIgnoreCase(msg)) {
                     return;
                 }
                 
