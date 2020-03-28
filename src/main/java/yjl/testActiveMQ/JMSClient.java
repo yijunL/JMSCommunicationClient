@@ -24,7 +24,7 @@ public class JMSClient {
         if ("p2p".equalsIgnoreCase(mode)) {
             JMSSender sender = new JMSSender();
             Scanner sc = new Scanner(System.in);
-            System.out.println("input you userId to login:");
+            System.out.println("input your userId to login:");
             String userId=sc.nextLine();
 
             //发送和接收并行运行
