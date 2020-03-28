@@ -62,7 +62,7 @@ public class JMSReceiver extends Receiver {                //基于JMS的消息�
             // blocking till receive the message
             Message recvMessage = consumer.receive();
             System.out.println(LocalDateTime.now()+"  Receive message: " + ((TextMessage)recvMessage).getText());
-			System.out.println("Translate: "+ Translate.translate(((TextMessage)recvMessage).getText(), Locale.getDefault().getLanguage()));
+			System.out.println("Translation: "+ Translate.translate(((TextMessage)recvMessage).getText(), Locale.getDefault().getLanguage()));
 			Thread.sleep(1000);
 			//防止使用频率超限
             session.close();
