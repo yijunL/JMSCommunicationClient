@@ -15,4 +15,4 @@ For example:java -jar xxx.jar fileSender.
 ## NEW FUNCTION!                                    ---2020/3/28
 The point to point(p2p) communication supports real-time translation!
 
-# This program is for learning purpose only！
+# This program is for STUDY purpose only！
