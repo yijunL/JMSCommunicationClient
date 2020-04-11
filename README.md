@@ -1,4 +1,6 @@
 # JMSCommunicationClient
+## Because of the safety verification function, the whole project has been changed a lot.  Now move the project to https://github.com/yijunl/jmscommunication.   
+## This project will NO LONGER be maintained！
 
 ## This is a communication system based on JMS framework and ActiveMQ message queue.
 
